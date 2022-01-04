@@ -1,0 +1,975 @@
+/* CSS Document */
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+:root {
+  --skinColor: white;
+  --lightShadowColor: #c9c9c933;
+  --darkShadowColor: #8d8d8d33;
+  --finger2Color: rgb(233, 233, 233);
+  --finger3Color: rgb(211, 211, 211);
+  --skyColor1: rgb(0, 140, 255);
+  --skyColor2: rgb(116, 173, 238);
+  --skyColor3: rgb(160, 217, 235);
+  --floorColor1: rgb(208, 255, 194);
+  --floorColor2: rgb(162, 226, 143);
+  --floorColor3: rgb(95, 182, 69);
+  --floorColor4: rgb(59, 151, 31);
+  --sunColor: rgb(255, 230, 0);
+  --sunBgColor: rgb(255, 196, 0);
+  --roadColor: rgb(116, 116, 116);
+  --eyeColor: black;
+}
+
+:root.darkmode {
+  --skinColor: rgb(255, 248, 221);
+  --lightShadowColor: #ddddddab;
+  --darkShadowColor: #86868667;
+  --finger2Color: rgb(231, 227, 192);
+  --finger3Color: rgb(207, 201, 169);
+  --skyColor1: rgb(6, 0, 95);
+  --skyColor2: rgb(66, 9, 112);
+  --skyColor3: rgb(146, 66, 161);
+  --floorColor1: rgb(14, 11, 9);
+  --floorColor2: rgb(26, 20, 16);
+  --floorColor3: rgb(31, 25, 19);
+  --floorColor4: rgb(41, 35, 29);
+  --roadColor: rgb(19, 17, 15);
+  --starsAnimation: stars infinite;
+}
+
+body {
+  background-image: linear-gradient(
+    var(--skyColor1) 5%,
+    var(--skyColor2) 35%,
+    var(--skyColor3) 50%,
+    transparent 50%
+  )
+}
+
+.baymax div,
+.baymax,
+.glow,
+.daytime .sun,
+.daytime .sunbg,
+.sunbg:after,
+.sunbg:before,
+.moon div,
+.moon,
+button,
+.toggle,
+.sunny,
+.sunny:before,
+.sunny:after,
+.moony,
+.road,
+.floor,
+.stars1,
+.stars2,
+.stars3 {
+  position: absolute;
+} 
+
+.floor {
+  width: 100%;
+  height: 51%;
+  z-index: 600;
+  bottom: 0;
+  background-image: linear-gradient(
+    var(--floorColor1),
+    var(--floorColor2),
+    var(--floorColor3),
+    var(--floorColor4)
+  )
+}
+
+:root.darkmode .floor{
+  background-color: rgb(26, 26, 26);
+}
+
+.road{
+  border-bottom: 419px solid var(--roadColor);
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  height: 30em;
+  width: 30em;
+  bottom: 0%;
+  left: calc(50% - 15em);
+  z-index: 600;
+}
+
+/* container baymax */
+
+.baymax {
+  left: calc(50% - 12.5em);
+  bottom: 25%;
+  height: 32em;
+  width: 25em;
+  z-index: 700;
+}
+
+/* hoofd */
+
+.hoofd {
+  background-color: var(--skinColor);
+  left: calc(50% - 3em);
+  width: 6em;
+  height: 4em;
+  border-radius: 2.4em 2.4em 2em 2em;
+  z-index: 500;
+  box-shadow: 0em .5em .5em var(--lightShadowColor), inset 0em 1em 1em var(--lightShadowColor), inset 0em -.5em 1em var(--lightShadowColor);
+
+
+  animation: headtilt 1s ease-in-out infinite alternate;
+  transform-origin: center bottom;
+}
+
+.hoofd:hover {
+  animation: headflip 2s ease-in-out 1 alternate;
+  transform-origin: center;
+
+}
+
+@keyframes headtilt {
+  0% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes headflip {
+  0% {
+    transform: rotate(0deg);
+    top: 0%;
+  }
+
+  5% {
+    top: .5%;
+  }
+
+  10% {
+    top: 1%;
+  }
+
+  60% {
+    top: -4%;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    top: 0;
+  }
+}
+
+.oog {
+  background-color: var(--eyeColor);
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 1em;
+  top: 40%;
+  animation: knipperen 4s linear infinite;
+}
+
+.oog.rechts {
+  right: 1.3em;
+}
+
+.oog.links {
+  left: 1.3em;
+}
+
+@keyframes knipperen {
+  0% {
+    transform: none;
+  }
+
+  48% {
+    transform: none;
+  }
+
+  50% {
+    transform: scaleY(0);
+  }
+
+  52% {
+    transform: none;
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+
+.connectie {
+  background-color: var(--eyeColor);
+  width: 3em;
+  height: 0.11em;
+  top: 47%;
+  left: calc(50% - 1.5em);
+}
+
+/* buik */
+
+.buik {
+  width: 16em;
+  height: 23em;
+  left: calc(50% - 8em);
+  bottom: 20%;
+}
+
+.buik .boven {
+  height: 13em;
+  width: 12em;
+  transform: rotate(-90deg);
+  background-color: var(--skinColor);
+  left: calc(50% - 6em);
+  border-radius: 0% 100% 100% 0% / 100% 50% 50% 0%;
+  box-shadow: inset -1em 0em 1em var(--lightShadowColor);
+  z-index: 400;
+}
+
+.badge {
+  background-image: linear-gradient(-130deg,
+      rgb(223, 223, 223) calc(.9em - 1px),
+      rgb(165, 165, 165) calc(.9em - 1px) calc(.9em + 1px),
+      rgb(197, 197, 197) calc(.9em + 1px));
+
+  height: 1.5em;
+  width: 1.2em;
+  z-index: 450;
+  top: 15%;
+  right: 30%;
+  border-radius: 58% 42% 56% 44% / 55% 44% 56% 45%;
+  transform: rotate(-45deg);
+}
+
+.buik .onder {
+  height: 16em;
+  width: 15em;
+  border-radius: 7.5em;
+  background-color: var(--skinColor);
+  left: calc(50% - 7.5em);
+  top: 20%;
+  box-shadow: inset 0em -2em 2em var(--lightShadowColor);
+  z-index: 450;
+
+  animation: buikie 1s ease-in-out infinite alternate;
+}
+
+@keyframes buikie {
+  0% {
+    left: calc(50% - 7.43em)
+  }
+
+  100% {
+    left: calc(50% - 7.58em)
+  }
+}
+
+/* armen */
+
+.arm {
+  background-color: var(--skinColor);
+  width: 4em;
+  height: 15em;
+  top: 12%;
+  z-index: 300;
+
+  animation: 1s ease-in-out infinite running;
+}
+
+.arm.links {
+  left: 15%;
+  transform: rotate(30deg);
+  border-radius: 50% 20% 50% 50%;
+  box-shadow: inset -2.5em 3em 1em var(--darkShadowColor);
+
+  animation-name: armpie-links;
+  animation-direction: alternate-reverse;
+  transform-origin: 72% 50%;
+}
+
+
+.arm.rechts {
+  right: 15%;
+  transform: rotate(-30deg);
+  border-radius: 20% 50% 50% 50%;
+  box-shadow: inset 2.5em 3em 1em var(--darkShadowColor);
+
+  animation-name: armpie-rechts;
+  animation-direction: alternate;
+  transform-origin: 30% 50%;
+}
+
+@keyframes armpie-links {
+  0% {
+    transform: rotate(30deg)
+  }
+
+  100% {
+    transform: rotate(33deg)
+  }
+}
+
+@keyframes armpie-rechts {
+  0% {
+    transform: rotate(-30deg)
+  }
+
+  100% {
+    transform: rotate(-33deg)
+  }
+}
+
+/* vingers */
+.vinger1 {
+  z-index: 500;
+  width: 1.3em;
+  height: 2em;
+  background-color: var(--skinColor);
+  top: 13.6em;
+}
+
+.vinger1.links {
+  transform: rotate(-40deg);
+  left: 39%;
+  border-radius: 20% 50% 50% 50%;
+  box-shadow: inset 0.3em 0.4em 0.5em var(--darkShadowColor);
+
+}
+
+.vinger1.rechts {
+  transform: rotate(40deg);
+  right: 39%;
+  border-radius: 50% 20% 50% 50%;
+  box-shadow: inset -0.3em 0.4em 0.5em var(--darkShadowColor);
+}
+
+.vinger2 {
+  z-index: 400;
+  width: 1.3em;
+  height: 1.9em;
+  top: 13.7em;
+  background-color: var(--finger2Color);
+}
+
+.vinger2.links {
+  transform: rotate(-55deg);
+  left: 47%;
+  border-radius: 20% 30% 50% 50%;
+}
+
+.vinger2.rechts {
+  transform: rotate(48deg);
+  right: 47%;
+  border-radius: 50% 20% 50% 50%;
+}
+
+.vinger3 {
+  z-index: 300;
+  width: 1.3em;
+  height: 1.9em;
+  top: 13.5em;
+  background-color: var(--finger3Color);
+  ;
+}
+
+.vinger3.links {
+  transform: rotate(-70deg);
+  left: 50%;
+  border-radius: 20% 50% 50% 50%;
+}
+
+.vinger3.rechts {
+  transform: rotate(70deg);
+  right: 50%;
+  border-radius: 50% 20% 50% 50%;
+}
+
+.duim {
+  z-index: 500;
+  width: 1.3em;
+  height: 2.1em;
+  top: 11.5em;
+  background-color: var(--skinColor);
+}
+
+.duim.links {
+  transform: rotate(-50deg);
+  left: 60%;
+  border-radius: 50% 10% 50% 50%;
+  box-shadow: inset -0.3em 0.4em 0.5em var(--darkShadowColor);
+
+}
+
+.duim.rechts {
+  transform: rotate(50deg);
+  right: 60%;
+  border-radius: 10% 50% 50% 50%;
+  box-shadow: inset 0.3em 0.4em 0.5em var(--darkShadowColor);
+}
+
+/* benen */
+
+.been {
+  z-index: 250;
+  background-color: var(--skinColor);
+  width: 5em;
+  height: 11em;
+  bottom: 17%;
+  border-radius: 47%;
+  z-index: 250;
+
+  animation: lekkerlopen 1s ease-in-out infinite running;
+  transform-origin: center bottom;
+}
+
+.been.links {
+  left: 29%;
+  transform: rotate(-7deg);
+  box-shadow: inset -1.5em 6em 1em var(--lightShadowColor), inset .5em -1em 1em var(--lightShadowColor);
+
+  animation-direction: alternate;
+}
+
+.been.rechts {
+  right: 29%;
+  transform: rotate(7deg);
+  box-shadow: inset 1.5em 6em 1em var(--lightShadowColor), inset -.5em -1em 1em var(--lightShadowColor);
+
+  animation-direction: alternate-reverse;
+}
+
+
+@keyframes lekkerlopen {
+  0% {
+    transform: scale(1, 1);
+    background: var(--skinColor);
+    bottom: 16%;
+  }
+
+  100% {
+    transform: scale(.9, 1);
+    background: var(--finger2Color);
+    bottom: 18%;
+  }
+}
+
+.sun{
+  z-index: 500;
+  width: 7em;
+  height: 7em;
+  border-radius: 3.5em;
+  left: calc(16% - 3.5em);
+  top: 6%;
+  background-color: var(--sunColor);
+  box-shadow: 0em 0em 1em rgba(255, 230, 0, 0.63)
+}
+
+.sunbg {
+  z-index: 400;
+  background: var(--sunBgColor);
+  width: 8em;
+  height: 8em;
+  left: calc(16% - 4em);
+  top: 5%;
+
+  box-shadow: 0em 0em 4em var(--sunBgColor);
+
+  animation: zonnetje 10s linear infinite;
+}
+
+.sunbg:before,
+.sunbg:after {
+  content: "";
+  top: 0;
+  left: 0;
+  height: 8em;
+  width: 8em;
+  background: var(--sunBgColor);
+}
+
+.sunbg:before {
+  transform: rotate(30deg);
+}
+
+.sunbg:after {
+  transform: rotate(60deg);
+}
+
+:root.darkmode .sun,
+:root.darkmode .sunbg{
+  display: none;
+}
+
+@keyframes zonnetje {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* night/daymode button */
+
+button {
+  width: 8em;
+  height: 4em;
+  background-color: var(--skinColor);
+  left: calc(50% - 4em);
+  border-radius: 2em;
+  bottom: 10%;
+  z-index: 800;
+  border: none;
+  outline: none;
+  cursor: url(https://cur.cursors-4u.net/symbols/sym-1/sym57.cur), auto !important;
+}
+
+:root.darkmode button {
+  background-color: var(--lightShadowColor);
+}
+
+.toggle {
+  width: 3.3em;
+  height: 3.3em;
+  border-radius: 2em;
+  background-color: rgb(185, 185, 185);
+  left: calc(75% - 1.65em);
+  bottom: 10%;
+}
+
+:root.darkmode .toggle{
+  left: calc(26% - 1.65em);
+  background-color: rgb(100, 100, 100);
+}
+
+/* small sun/moon icons on button */
+
+.sunny{
+  z-index: 400;
+  background-color: rgb(138, 138, 138);
+  width: 1.7em;
+  height: 1.7em;
+  left: calc(76% - .85em);
+  bottom: 30%;
+}
+.sunny:before,
+.sunny:after {
+  content: "";
+  top: 0;
+  left: 0;
+  height: 1.7em;
+  width: 1.7em;
+  background-color: rgb(138, 138, 138);
+}
+
+.sunny:before {
+  transform: rotate(30deg);
+}
+
+.sunny:after {
+  transform: rotate(60deg);
+}
+
+.moony {
+      width: 2em;
+      height: 2em;
+      border-radius: 50%;
+      box-shadow: -10px 5px 0 0 rgb(223, 223, 223);
+      left: calc(35% - 1em);
+      bottom: 35%;
+}
+
+/* moon */
+
+:root.darkmode .moon{
+  z-index: 600;
+  height: 7em;
+  width: 7em;
+  background-color: white;
+  border-radius: 3.5em;
+  left: 8.5%;
+  top: 6%;
+
+  animation: maan 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes maan{
+  0%{
+    box-shadow: 0em 0em 1.5em var(--skinColor);
+  }
+
+  100%{
+    box-shadow: 0em 0em 3.5em var(--skinColor);
+  }
+}
+
+:root.darkmode .crater1{
+  z-index: 600;
+  height: 2em;
+  width: 1.6em;
+  background-color: var(--lightShadowColor);
+  left: 25%;
+  top: 16%;
+  border-radius: 71% 29% 37% 63% / 44% 33% 67% 56%;
+  box-shadow:inset .2em -.2em 0em var(--darkShadowColor);
+}
+
+:root.darkmode .crater2{
+  z-index: 600;
+  height: 1.4em;
+  width: 1em;
+  background-color: var(--lightShadowColor);
+  left: 70%;
+  top: 37%;
+  border-radius: 71% 29% 37% 63% / 44% 33% 67% 56%;
+  box-shadow:inset -.1em -.2em 0em var(--darkShadowColor);
+}
+
+:root.darkmode .crater3{
+  z-index: 600;
+  height: 1.8em;
+  width: 1.5em;
+  background-color: var(--lightShadowColor);
+  left: 28%;
+  top: 60%;
+  border-radius: 71% 29% 37% 63% / 44% 33% 67% 56%;
+  box-shadow:inset -.1em -.2em 0em var(--darkShadowColor);
+}
+
+/* glow effect on baymax */
+
+:root.darkmode .buik .onder,
+:root.darkmode .buik .boven,
+:root.darkmode .hoofd,
+:root.darkmode .arm.links,
+:root.darkmode .arm.rechts,
+:root.darkmode .been.links,
+:root.darkmode .been.rechts {
+  box-shadow: 0em 0em 2em rgb(255, 248, 221);
+}
+
+/* stars! */
+
+:root.darkmode .space {
+  background: rgba(0, 0, 0, 0) center / 250px 250px;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 50;
+}
+
+:root.darkmode .stars1 {
+  z-index: 500;
+  background-image:
+    radial-gradient(
+      1px 1px at 25px 5px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      1px 1px at 50px 25px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      1px 1px at 125px 20px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      1.5px 1.5px at 50px 75px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      2px 2px at 15px 125px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      2.5px 2.5px at 110px 80px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      1px 1px at 100px 20px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      2px 2px at 20px 50px, 
+      rgb(255, 255, 255), 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      2.5px 2.5px at 100px 5px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    ;
+
+    animation: var(--starsAnimation) 140s -3s;
+}
+
+:root.darkmode .stars2 {
+  z-index: 500;
+  background-image:
+    radial-gradient(
+      1px 1px at 75px 125px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      1px 1px at 100px 75px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      1.5px 1.5px at 199px 100px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      2px 2px at 20px 50px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      2.5px 2.5px at 100px 5px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      2.5px 2.5px at 5px 5px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    );
+
+    animation: var(--starsAnimation) 120s ;
+}
+
+:root.darkmode .stars3 {
+  z-index: 500;
+  background-image:
+  radial-gradient(
+      1px 1px at 25px 5px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      1px 1px at 50px 25px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      1px 1px at 125px 20px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      1.5px 1.5px at 50px 75px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      2px 2px at 15px 125px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      2.5px 2.5px at 110px 80px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      1px 1px at 75px 125px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      1px 1px at 100px 75px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      1.5px 1.5px at 199px 100px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+      2.5px 2.5px at 5px 5px, 
+      white, 
+      rgba(255, 255, 255, 0)
+    );
+
+    animation: var(--starsAnimation) 110s -5s;
+}
+
+@keyframes stars {
+  40% {
+    opacity: 0.95;
+  }
+  50% {
+    opacity: 0.45;
+  }
+  60% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* small screen */
+
+@media (max-width: 600px) {
+  :root {
+  --skinColor: rgb(63, 63, 63);
+  --lightShadowColor: #242424;
+  --darkShadowColor: #000000;
+  --finger2Color: rgb(48, 48, 48);
+  --finger3Color: rgb(0, 0, 0);
+  --skyColor1: rgb(163, 163, 163);
+  --skyColor2: rgb(201, 201, 201);
+  --skyColor3: rgb(255, 255, 255);
+  --floorColor1: rgb(0, 0, 0);
+  --floorColor2: rgb(63, 63, 63);
+  --floorColor3: rgb(136, 136, 136);
+  --floorColor4: rgb(219, 219, 219);
+  --sunColor: rgb(0, 0, 0);
+  --sunBgColor: rgb(100, 100, 100);
+  --roadColor: rgb(255, 255, 255);
+  }
+
+  .baymax {
+    transform: scale(.5, .5);
+    top: 25%;
+  }
+
+  .hoofd {
+    transform: scale(2, 2);
+    width: 6em;
+    height: 5em;
+  }
+
+  .oog {
+    width: 1.1em;
+    height: 1.1em;
+  }
+
+  .oog.rechts {
+    right: 1em;
+  }
+
+  .rechts .glow {
+    width: .5em;
+    height: .4em;
+    background-color: rgb(255, 255, 255);
+    z-index: 500;
+    border-radius: .2em;
+    left: 15%;
+    top: 15%;
+  }
+
+  .oog.links {
+    left: 1em;
+  }
+
+  .links .glow {
+    width: .5em;
+    height: .4em;
+    background-color: rgb(255, 255, 255);
+    z-index: 500;
+    border-radius: .2em;
+    left: 15%;
+    top: 15%;
+  }
+
+  .connectie {
+    top: 50%;
+  }
+
+  .sun {
+    z-index: 500;
+    width: 5em;
+    height: 5em;
+    border-radius: 3.5em;
+    left: 8.5%;
+    top: 6%;
+    box-shadow: 0em 0em 1em rgba(255, 255, 255, 0.63)
+  }
+
+  .sunbg {
+    position: relative;
+    z-index: 400;
+    width: 6em;
+    height: 6em;
+    left: 7%;
+    top: 5%;
+
+  }
+
+  .sunbg:before,
+  .sunbg:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 6em;
+    width: 6em;
+  }
+
+  .moon {
+    z-index: 600;
+    height: 4.5em;
+    width: 4.5em;
+    border-radius: 3.5em;
+    left: 8.5%;
+    top: 6%;
+  }
+
+  .crater1 {
+    z-index: 600;
+    height: 1.4em;
+    width: .9em;
+    left: 27%;
+    top: 16%;
+    border-radius: 71% 29% 37% 63% / 44% 33% 67% 56%;
+  }
+
+  .crater2 {
+    z-index: 600;
+    height: 1.4em;
+    width: 1em;
+    left: 70%;
+    top: 35%;
+    border-radius: 71% 29% 37% 63% / 44% 33% 67% 56%;
+  }
+
+  .crater3 {
+    z-index: 600;
+    height: 1.6em;
+    width: 1.3em;
+    left: 28%;
+    top: 56%;
+    border-radius: 71% 29% 37% 63% / 44% 33% 67% 56%;
+  }
+}
